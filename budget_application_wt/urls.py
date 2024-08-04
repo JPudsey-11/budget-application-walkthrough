@@ -14,10 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# budget_application_wt/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('budget_application_wt.urls'), name='home'),  # Change 'my_app' to 'Budget_Manager'
+    path('', include('budget_application_app.urls')),  # Include the app's urls
 ]
