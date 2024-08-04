@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('w$+!9v6c^1o2s^fhqpb=8)h3+0xygt@t%k#j78=_o+ixuq8zkd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io','.herokuapp.com']
+ALLOWED_HOSTS = ['8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io', '.herokuapp.com']
 
 # Application definition
 
@@ -62,7 +62,6 @@ ROOT_URLCONF = 'budget_application_wt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
         'DIRS': [TEMPLATES_DIR],
         'OPTIONS': {
             'context_processors': [
@@ -81,18 +80,9 @@ WSGI_APPLICATION = 'budget_application_wt.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-# }
-
 DATABASES = {
-'default':
-dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -112,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -124,12 +113,11 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
