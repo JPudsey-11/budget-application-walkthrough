@@ -21,5 +21,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('budget_application_app.urls')),  # Include the app's urls
+    path('', include('budget_application_app.urls'), name='home'),  # Ensure the app name here is correct
 ]
