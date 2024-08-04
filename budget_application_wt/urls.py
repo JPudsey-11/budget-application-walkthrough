@@ -18,6 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-path('admin/', admin.site.urls),
-path('', include('my_app.urls'), name='home'),
+    path('admin/', admin.site.urls),
+    path('', include('Budget_Manager.urls'), name='home'),  # Change 'my_app' to 'Budget_Manager'
 ]
