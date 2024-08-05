@@ -24,7 +24,7 @@ ALLOWED_HOSTS = [
     'your-heroku-app-name.herokuapp.com',
     'http://8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io/project-detail.html',
     'http://8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io/project-list.html',
-
+    '8000-jpudsey11-budgetapplica-trkqyhifddh.ws.codeinstitute-ide.net',
 ]
 
 # Application definition
