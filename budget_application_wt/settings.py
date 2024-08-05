@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
     'http://8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io/project-detail.html',
     'http://8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io/project-list.html',
     '8000-jpudsey11-budgetapplica-trkqyhifddh.ws.codeinstitute-ide.net',
+    'https://budget-application-wt-2139598a7d0f.herokuapp.com/admin/login/?next=/admin/login',
 ]
 
 # Application definition
@@ -59,6 +60,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [TEMPLATES_DIR],
+        'APP_DIRS': True,  # Add this line
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -69,6 +71,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'budget_application_wt.wsgi.application'
 
