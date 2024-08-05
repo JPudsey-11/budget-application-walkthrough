@@ -1,19 +1,10 @@
 # budget_application_app/views.py
 
 from django.shortcuts import render
-from django.views.generic import TemplateView
 
-class HomePage(TemplateView):
-    """
-    Displays home page
-    """
-    template_name = 'index.html'
+def project_list(request):
+    return render(request, 'budget/project-list.html')
 
-    from django.shortcuts import render
-
-    def project_list(request):
-        return render(request, 'budget/project-list.html')
-
-    def project_detail(request,project_slug):
-        # fetch the correct project
-        return render(request, 'budget/project-detail.html')
+def project_detail(request, project_slug):
+    # fetch the correct project
+    return render(request, 'budget/project-detail.html')
