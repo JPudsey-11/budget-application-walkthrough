@@ -20,6 +20,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', include('budget_application_app.urls'), name='home'),  # Ensure the app name here is correct
+    path('admin/', admin.site.urls),
 ]

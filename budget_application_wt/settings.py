@@ -21,7 +21,10 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io',
     '.herokuapp.com',
-    'your-heroku-app-name.herokuapp.com'
+    'your-heroku-app-name.herokuapp.com',
+    'http://8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io/project-detail.html',
+    'http://8000-jpudsey11-budgetapplica-hw43wqgycle.ws-eu115.gitpod.io/project-list.html',
+
 ]
 
 # Application definition
