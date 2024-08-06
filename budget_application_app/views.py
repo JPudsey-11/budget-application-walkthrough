@@ -19,15 +19,28 @@ class ProjectCreateView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.slug = self.generate_unique_slug(self.object.name)
         self.object.save()
 
         categories = self.request.POST['categoriesString'].split(',')
         for category in categories:
             Category.objects.create(
-                project=Project.objects.get(id=self.object.id),
+                project=self.object,
                 name=category
             ).save()
-            return HttpResponseRedirect(self.get_success_url())
+        
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return slugify(self.request.POST['name'])
+        return f"/{self.object.slug}/"
+
+    def generate_unique_slug(self, name):
+        slug = slugify(name)
+        original_slug = slug
+        queryset = Project.objects.filter(slug=slug).exists()
+        counter = 1
+        while queryset:
+            slug = f"{original_slug}-{counter}"
+            queryset = Project.objects.filter(slug=slug).exists()
+            counter += 1
+        return slug
