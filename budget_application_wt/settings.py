@@ -72,7 +72,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'budget_application_wt.wsgi.application'
 
 # Database
@@ -117,3 +116,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-jpudsey11-budgetapplica-trkqyhifddh.ws.codeinstitute-ide.net',
+    'https://budget-application-wt-2139598a7d0f.herokuapp.com'
+]
