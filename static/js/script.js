@@ -1,5 +1,5 @@
 (function(){
-    
+
     document.querySelector('#categoryInput').addEventListener('keydown', function(e){
         if (e.keyCode != 13){
             return;
@@ -15,22 +15,32 @@
     })
 
     function addNewCategory(name){
-        document.querySelector('#categoriesContainer').insertAdjacentHTML('beforeend',
-        `<li class="category">
+        const html = `<li class="category">
             <span class="name">${name}</span>
             <span onclick="removeCategory(this)" class="btnRemove bold">X</span>
-        </li>`);
+        </li>`;
+        document.querySelector('#categoriesContainer').insertAdjacentHTML('beforeend', html);
     }
 
-    function updateCategoriesString(){
-        const categories = [];
+    function fetchCategoryArray(){
+        var categories = [];
 
-        document.querySelectorAll('.category').forEach((element) => {
-            categories.push(element.querySelector('.name').innerHTML);
+        document.querySelectorAll('.category').forEach(function(e){
+            var name = e.querySelector('.name').innerHTML;
+            if (name === '') return;
+
+            categories.push(name);
         });
 
-        document.querySelector('input[name="categoriesString"]').value = categories.join(',');
+        return categories;
     }
+    
+    function updateCategoriesString(){
+        categories = fetchCategoryArray()
+        document.querySelector('input[name="categoriesString"]').value = categories.join(',')
+    }
+        
+    
 })();
 
 function removeCategory(e){
