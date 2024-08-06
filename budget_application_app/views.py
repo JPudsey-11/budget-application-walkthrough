@@ -1,13 +1,15 @@
 # budget_application_app/views.py
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect  # Corrected import statement
+from django.http import HttpResponseRedirect, HttpResponse  # Corrected import statement
 from .models import Project, Category, Expense
 from django.views.generic import CreateView
 from django.utils.text import slugify
 from .forms import ExpenseForm
+import json
 
 def project_list(request):
-    return render(request, 'budget/project-list.html')
+    project_list = Project.objects.all()
+    return render(request, 'budget/project-list.html', {'project-list': project_list})
 
 def project_detail(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
@@ -52,6 +54,14 @@ class ProjectCreateView(CreateView):
                 project=self.object,
                 name=category
             ).save()
+
+        elif request.method == 'DELETE':
+            id = json.loads(request.body)['id']
+            expense = get_object_or_404(Expense, id=id)
+            expense.delete()
+        
+        return HttpResponse('')
+
 
         return HttpResponseRedirect(self.get_success_url())
 

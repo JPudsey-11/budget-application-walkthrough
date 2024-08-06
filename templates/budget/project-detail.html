@@ -13,13 +13,20 @@
             <div class="col s12 m6 l4">
                 <div class="card-panel">
                     <h6 class="bold">Budget Left</h6>
-                    <h1 class="bold">$...</h1>
+                    {% if project.budget_left > 0 %}
+                    <h1 class="bold green-text">${{ project.budget_left }}</h1>
+                    {% elif project.budge_left == 0 %}
+                    <h1 class="bold orange-text">${{ project.budget_left }}</h1>
+                    {% else  %}
+                    <h1 class="bold red-text">${{ project.budget_left }}</h1>
+                    {% endif %}
+                    
                 </div>
             </div>
             <div class="col s12 m6 l4">
                 <div class="card-panel">
                     <h6 class="bold">Total Transactions</h6>
-                    <h1 class="bold">$...</h1>
+                    <h1 class="bold">${{ project.total_transcations }}</h1>
                 </div>
             </div>
         </div>
@@ -30,9 +37,7 @@
             <button class="btn waves-effect right modal-trigger" href="#expenseModal"><i class="material-icons white-text left">add_circle</i> Add Expense</button>
         </div>
         <ul class="z-depth-1">
-
             {% for expense in expense_list %}
-
             <li>
                 <div class="card-panel z-depth-0 expense">
                     <div class="row">
@@ -45,15 +50,14 @@
                         <div class="col s2">
                             <span class="title bold">{{ expense.category.name }}</span>
                         </div>
-                        <a href="">
+
+                        <a onclick="deleteExpense(this)" data-id="{{ expense.id }}">
                             <i class="material-icons red-text right">close</i>
                         </a>
                     </div>
                 </div>
             </li>
-
             {% endfor %}
-            
         </ul>
     </section>
 </div>
@@ -87,6 +91,30 @@
 
     var elem = document.querySelector('select');
     var instance = M.FormSelect.init(elem);
+
+    function deleteExpense(e) {
+
+        let id = e.dataset.id
+        e.closest('li').remove()
+
+        fetch('', {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                'id': id
+            }),
+            credentials: 'same-origin'
+        }).then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Failed to delete expense');
+            }
+        });
+    }
 </script>
 
 {% endblock %}
