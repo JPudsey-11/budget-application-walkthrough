@@ -29,6 +29,15 @@ html {
     margin-bottom: 50px;
 }
 
+/* project add view */
+form ul li.category {
+    display: inline-block;
+    background-color: white;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+
 /* Project Detail Statistics */ 
 
 .section-stats h1 {

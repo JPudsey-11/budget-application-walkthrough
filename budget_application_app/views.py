@@ -1,3 +1,4 @@
+# budget_application_app/views.py
 from django.shortcuts import render, get_object_or_404
 from .models import Project
 from django.views.generic import CreateView
