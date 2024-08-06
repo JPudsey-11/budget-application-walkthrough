@@ -9,7 +9,7 @@ import json
 
 def project_list(request):
     project_list = Project.objects.all()
-    return render(request, 'budget/project-list.html', {'project-list': project_list})
+    return render(request, 'budget/project-list.html', {'project_list': project_list})
 
 def project_detail(request, project_slug):
     project = get_object_or_404(Project, slug=project_slug)
@@ -34,9 +34,14 @@ def project_detail(request, project_slug):
                 amount=amount,
                 category=category
             ).save()
-        pass 
+        
+        return HttpResponseRedirect(f'/{project_slug}/')
 
-    return HttpResponseRedirect(f'/{project_slug}/')
+    elif request.method == 'DELETE':
+        id = json.loads(request.body)['id']
+        expense = get_object_or_404(Expense, id=id)
+        expense.delete()
+        return HttpResponse('')
 
 class ProjectCreateView(CreateView):
     model = Project
@@ -54,14 +59,6 @@ class ProjectCreateView(CreateView):
                 project=self.object,
                 name=category
             ).save()
-
-        elif request.method == 'DELETE':
-            id = json.loads(request.body)['id']
-            expense = get_object_or_404(Expense, id=id)
-            expense.delete()
-        
-        return HttpResponse('')
-
 
         return HttpResponseRedirect(self.get_success_url())
 
