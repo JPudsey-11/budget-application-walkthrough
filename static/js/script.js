@@ -1,29 +1,39 @@
 (function(){
-
-    document.querySelector('#category').addEventListener('keydown', function(e))
+    
+    document.querySelector('#categoryInput').addEventListener('keydown', function(e){
         if (e.keyCode != 13){
             return;
         }
 
-        e.preventDefault()
+        e.preventDefault();
 
+        var categoryName = this.value;
 
-        var categoryName = this.value
-        this.value = ''
-        addNewCategory(categoryName)
-        updateCategoriesString()
-
-
+        this.value = '';
+        addNewCategory(categoryName);
+        updateCategoriesString();
     })
 
     function addNewCategory(name){
-        document.querySelector('#categoriesContainer').insertAdjacentHTML('beforeend', 
-            '<li class="category">
-                <span class="name">Development</span>
-                <span onclick="removeCategory(this)" class="btnRemove bold">X</span>
-            </li>
-        ')
-
+        document.querySelector('#categoriesContainer').insertAdjacentHTML('beforeend',
+        `<li class="category">
+            <span class="name">${name}</span>
+            <span onclick="removeCategory(this)" class="btnRemove bold">X</span>
+        </li>`);
     }
 
-})()
+    function updateCategoriesString(){
+        const categories = [];
+
+        document.querySelectorAll('.category').forEach((element) => {
+            categories.push(element.querySelector('.name').innerHTML);
+        });
+
+        document.querySelector('input[name="categoriesString"]').value = categories.join(',');
+    }
+})();
+
+function removeCategory(e){
+    e.parentElement.remove();
+    updateCategoriesString();
+} 
