@@ -1,4 +1,4 @@
-from django.contrib import admin
+# budget_application_app/urls.py
 from django.urls import path
 from . import views
 

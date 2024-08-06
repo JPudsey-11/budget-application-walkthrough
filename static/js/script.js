@@ -12,7 +12,7 @@
         this.value = '';
         addNewCategory(categoryName);
         updateCategoriesString();
-    })
+    });
 
     function addNewCategory(name){
         const html = `<li class="category">
@@ -36,8 +36,8 @@
     }
     
     function updateCategoriesString(){
-        categories = fetchCategoryArray()
-        document.querySelector('input[name="categoriesString"]').value = categories.join(',')
+        categories = fetchCategoryArray();
+        document.querySelector('input[name="categoriesString"]').value = categories.join(',');
     }
         
     

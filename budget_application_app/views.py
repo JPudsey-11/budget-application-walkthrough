@@ -1,7 +1,7 @@
 # budget_application_app/views.py
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from .models import Project, Category 
+from .models import Project, Category
 from django.views.generic import CreateView
 from django.utils.text import slugify
 
@@ -28,7 +28,7 @@ class ProjectCreateView(CreateView):
                 project=self.object,
                 name=category
             ).save()
-        
+
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
